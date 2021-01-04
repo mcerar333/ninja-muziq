@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap');
+
+:root {
+  --color-primary: #4f515a;
+  --color-secondary: #ebebeb;
+  --color-warning: #da0f41;
+  --color-background: #fafafa;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-weight: 400;
+  line-height: 1.5;
+  min-height: 100vh;
+  color: var(--color-primary);
+  background: var(--color-background);
+  font-family: 'Nunito', sans-serif;
+
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+form {
+  width: 40rem;
+  max-width: 100%;
+  padding: 4rem 5rem;
+  background: #fff;
+  border-radius: 0.8rem;
+  border: 1px solid var(--color-secondary);
+  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
+}
+
+input,
+textarea {
+  display: block;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 1rem 0;
+  margin: 2rem auto;
+  color: var(--color-primary);
+  border-bottom: 1px solid var(--color-secondary);
+}
+
+#app {
+  font-size: 1.6rem;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.8rem;
+  padding: 0.8rem 1.5rem;
+  color: var(--color-primary);
+  background: var(--color-secondary);
+
+  transition: all 0.2s;
+}
+.btn:hover {
+  color: #f4f4f4;
+  background: var(--color-primary);
+}
+.btn:focus {
+  box-shadow: 0 0 3px var(--color-primary);
+}
+.btn:active {
+  transform: scale(0.98) translateY(0.3rem);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: var(--color-primary);
+  background: var(--color-secondary);
+}
+
+.error {
+  margin: 1.5rem 0 2rem;
+  font-size: 1.4rem;
+  color: var(--color-warning);
+}
+
+@media screen and (max-width: 54em) {
+  html {
+    font-size: 55%;
+  }
+}
+@media screen and (max-width: 40.6em) {
+  html {
+    font-size: 50%;
+  }
+}
+/* @media screen and (max-width: 20em) {
+  html {
+    font-size: 45%;
+  }
+} */
