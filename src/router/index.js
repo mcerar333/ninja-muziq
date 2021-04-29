@@ -1,18 +1,18 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
-import getUser from '@/composables/getUser'
-import Home from '../views/Home.vue'
+import getUser from '@/composables/getUser';
+import Home from '../views/Home.vue';
 
-const user = getUser()
+const user = getUser();
 
 const requiresAuth = (_to, _from, next) => {
-  if (!user.value) next({ name: 'Login' })
-  else next()
-}
+  if (!user.value) next({ name: 'Login' });
+  else next();
+};
 const requiresUnauth = (_to, _from, next) => {
-  if (user.value) next({ name: 'Home' })
-  else next()
-}
+  if (user.value) next({ name: 'Home' });
+  else next();
+};
 
 const routes = [
   {
@@ -70,11 +70,11 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "notFound" */ '../views/NotFound'),
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-})
+});
 
-export default router
+export default router;

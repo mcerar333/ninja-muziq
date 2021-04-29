@@ -33,21 +33,21 @@
 <script>
 const ListView = defineAsyncComponent(() =>
   import('../components/ListView.vue')
-)
+);
 const BaseSpinner = defineAsyncComponent(() =>
   import('../components/BaseSpinner')
-)
+);
 
-import getDocuments from '@/composables/getDocuments'
+import getDocuments from '@/composables/getDocuments';
 
-import { defineAsyncComponent, ref } from 'vue'
+import { defineAsyncComponent, ref } from 'vue';
 
 export default {
   components: { ListView, BaseSpinner },
 
   setup() {
-    const scrollbar = ref(null)
-    let lastFetch = new Date().getTime()
+    const scrollbar = ref(null);
+    const fetching = ref(false);
 
     const {
       pending,
@@ -55,30 +55,28 @@ export default {
       documents,
       initialFetch,
       fetchMore,
-    } = getDocuments('playlists')
+    } = getDocuments('playlists');
 
-    initialFetch(5)
+    initialFetch(5);
 
-    const tryFetch = async () => {
-      const now = new Date().getTime()
+    const handleFetch = async () => {
+      if (fetching.value === true) return;
 
-      if (now - lastFetch < 300) return
-      else {
-        await fetchMore(3)
-        lastFetch = now
-      }
-    }
+      fetching.value = true;
+      await fetchMore(3);
+      fetching.value = false;
+    };
 
-    const handleScroll = (e) => {
-      const top = e.target.scrollTop
-      const height = e.target.scrollHeight
-      const offset = e.target.offsetHeight
+    const handleScroll = e => {
+      const top = e.target.scrollTop;
+      const offset = e.target.offsetHeight;
+      const height = e.target.scrollHeight;
 
-      const fractionFromTop = (top + offset) / height
-      scrollbar.value.style.height = fractionFromTop * 91.2 + '%'
+      const fractionFromTop = (top + offset) / height;
+      scrollbar.value.style.height = fractionFromTop * 91.2 + '%';
 
-      if (top >= height - offset) tryFetch()
-    }
+      if (top + offset > height - 1) handleFetch();
+    };
 
     return {
       pending,
@@ -87,9 +85,9 @@ export default {
       handleScroll,
       scrollbar,
       BaseSpinner,
-    }
+    };
   },
-}
+};
 </script>
 
 <style>
