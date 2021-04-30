@@ -121,8 +121,8 @@ textarea {
 }
 
 .error {
-  margin: 1.5rem 0 2rem;
   font-size: 1.4rem;
+  margin: 1.5rem 0 2rem;
   color: var(--color-warning);
 }
 

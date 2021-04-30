@@ -8,22 +8,8 @@
 <script>
 import TheNavbar from './components/TheNavbar';
 
-import { onMounted } from 'vue';
-
 export default {
   components: { TheNavbar },
-
-  setup() {
-    // Set '--vh' Custom Property equivalent to 1vh
-    const setVh = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
-    const setVhListeners = () =>
-      ['load', 'resize'].forEach(e => addEventListener(e, setVh));
-
-    onMounted(() => setVhListeners());
-  },
 };
 </script>
 

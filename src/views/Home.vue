@@ -263,7 +263,7 @@ export default {
     margin: 2rem 0;
   }
   .home__playlists {
-    height: calc(81vh - 20rem);
+    height: calc(81vh - 22.2rem);
   }
   .scrollPath {
     left: 102%;
