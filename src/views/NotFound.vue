@@ -97,6 +97,7 @@ $color-grey-light: #f4f2f2;
   margin-left: -30vw;
   margin-right: -30vw;
   min-height: calc(100vh - 9.2rem);
+  min-height: calc(var(--vh, 1vh) * 100 - 9.2rem);
 
   display: flex;
   flex-direction: column;
@@ -192,11 +193,13 @@ $color-grey-light: #f4f2f2;
 @media screen and (max-width: 46.9em) {
   .not-found {
     min-height: calc(100vh - 21.8rem);
+    min-height: calc(var(--vh, 1vh) * 100 - 21.8rem);
   }
 }
 @media screen and (max-width: 28em) {
   .not-found {
     min-height: calc(100vh - 26.2rem);
+    min-height: calc(var(--vh, 1vh) * 100 - 26.2rem);
   }
 }
 @media screen and (max-width: 20em) {

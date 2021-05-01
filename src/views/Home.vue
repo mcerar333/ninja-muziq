@@ -120,6 +120,7 @@ export default {
   -webkit-overflow-scrolling: touch;
 
   height: calc(89.5vh - 20rem);
+  height: calc(var(--vh, 1vh) * 89.5 - 20rem);
   max-height: 73rem;
 }
 .home__playlists::-webkit-scrollbar {
@@ -249,6 +250,7 @@ export default {
     align-items: center;
 
     height: calc(83vh - 20rem);
+    height: calc(var(--vh, 1vh) * 83 - 20rem);
   }
   .scrollPath {
     left: 100%;
@@ -264,6 +266,7 @@ export default {
   }
   .home__playlists {
     height: calc(81vh - 22.2rem);
+    height: calc(var(--vh, 1vh) * 81 - 22.2rem);
   }
   .scrollPath {
     left: 102%;
