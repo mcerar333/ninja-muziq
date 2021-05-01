@@ -8,12 +8,22 @@
 
 ### Description
 
-- 🎵 **Ninja Muziq** is a music playlists sharing app that lets you browse the most popular song playlists or add your own... 🎧
+🎧 **Ninja Muziq** is a music playlists sharing app that lets you browse the most popular song playlists or add your own...
 
 ### Tech
 
-- 🍃 **Built with Vue.js v3** using the Composition API, Custom Composition Functions / Composables & Vue Router v4.
-- 🔥 **PaaS - Firebase as a Backend** using Firestore real time DB, Firebase Auth, Firebase Storage & Firebase Hosting.
+🍃 **Built with Vue.js v3** using:
+
+- the Composition API
+- Custom Composition Functions / Composables
+- Vue Router
+
+🔥 **PaaS - Firebase as a Backend** using:
+
+- Firebase Auth
+- Firebase Storage
+- Firebase Hosting
+- Firestore real time DB
 
 ---
 
