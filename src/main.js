@@ -1,5 +1,5 @@
-import { auth } from './firebase/config';
 import { createApp } from 'vue';
+import { auth } from './firebase/config';
 
 import router from './router';
 import App from './App.vue';
@@ -11,13 +11,13 @@ const setVh = () => {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 };
+
 const setVhListeners = () =>
   ['load', 'resize'].forEach(e => addEventListener(e, setVh));
 
 setVhListeners();
 
 let app = null;
-
 auth.onAuthStateChanged(() => {
   if (!app) {
     app = createApp(App)

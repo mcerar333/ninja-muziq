@@ -20,7 +20,7 @@ const useDocument = (collection, docId) => {
     }
   };
 
-  const updateDoc = async (updates) => {
+  const updateDoc = async updates => {
     useError.value = null;
     pending.value = true;
 

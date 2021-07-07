@@ -48,60 +48,60 @@
 <script>
 const BaseSpinner = defineAsyncComponent(() =>
   import('@/components/BaseSpinner')
-)
+);
 
-import useCollection from '@/composables/useCollection'
-import useStorage from '@/composables/useStorage'
-import getUser from '@/composables/getUser'
+import useCollection from '@/composables/useCollection';
+import useStorage from '@/composables/useStorage';
+import getUser from '@/composables/getUser';
 
-import { ref, defineAsyncComponent } from 'vue'
-import { timestamp } from '@/firebase/config'
-import { useRouter } from 'vue-router'
+import { ref, defineAsyncComponent } from 'vue';
+import { timestamp } from '@/firebase/config';
+import { useRouter } from 'vue-router';
 
 export default {
   components: { BaseSpinner },
 
   setup() {
-    const title = ref('')
-    const description = ref('')
-    const coverImage = ref(null)
-    const fileError = ref(null)
-    const pending = ref(false)
-    const router = useRouter()
-    const user = getUser()
+    const title = ref('');
+    const description = ref('');
+    const coverImage = ref(null);
+    const fileError = ref(null);
+    const pending = ref(false);
+    const router = useRouter();
+    const user = getUser();
 
-    const { error, addDoc } = useCollection('playlists')
-    const { storageError, filePath, fileUrl, uploadFile } = useStorage()
+    const { error, addDoc } = useCollection('playlists');
+    const { storageError, filePath, fileUrl, uploadFile } = useStorage();
 
     // Allowed File Types
-    const fileTypes = ['image/png', 'image/jpeg']
+    const fileTypes = ['image/png', 'image/jpeg'];
 
-    const handleFileChange = (e) => {
-      const selectedFile = e.target.files[0]
+    const handleFileChange = e => {
+      const selectedFile = e.target.files[0];
 
       if (
         selectedFile &&
         selectedFile.size <= 500000 &&
         fileTypes.includes(selectedFile.type)
       ) {
-        coverImage.value = selectedFile
-        fileError.value = null
+        coverImage.value = selectedFile;
+        fileError.value = null;
       } else if (selectedFile && selectedFile.size > 500000) {
-        coverImage.value = null
+        coverImage.value = null;
         fileError.value =
-          'File size limit exceeded. Please make sure the file size is 500KB or less.'
+          'File size limit exceeded. Please make sure the file size is 500KB or less.';
       } else {
-        coverImage.value = null
+        coverImage.value = null;
         fileError.value =
-          'Unsupported file type. Please select a JPEG or PNG image file.'
+          'Unsupported file type. Please select a JPEG or PNG image file.';
       }
-    }
+    };
 
     const handleSubmit = async () => {
       if (coverImage.value) {
-        pending.value = true
+        pending.value = true;
 
-        await uploadFile(coverImage.value)
+        await uploadFile(coverImage.value);
 
         const res = await addDoc({
           title: title.value,
@@ -112,14 +112,14 @@ export default {
           filePath: filePath.value,
           songs: [],
           createdAt: timestamp(),
-        })
+        });
 
-        pending.value = false
+        pending.value = false;
 
         if (!storageError.value && !error.value)
-          router.push({ name: 'PlaylistDetails', params: { id: res.id } })
+          router.push({ name: 'PlaylistDetails', params: { id: res.id } });
       }
-    }
+    };
 
     return {
       title,
@@ -130,9 +130,9 @@ export default {
       handleSubmit,
       pending,
       error,
-    }
+    };
   },
-}
+};
 </script>
 
 <style>

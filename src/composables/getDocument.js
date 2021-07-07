@@ -8,7 +8,7 @@ const getDocument = (collection, docId) => {
   const documentRef = db.collection(collection).doc(docId);
 
   const unsub = documentRef.onSnapshot(
-    (doc) => {
+    doc => {
       getError.value = null;
 
       if (doc.exists) {
@@ -22,14 +22,14 @@ const getDocument = (collection, docId) => {
         }, 500);
       }
     },
-    (err) => {
+    err => {
       document.value = null;
       getError.value = err.message;
     }
   );
 
   // Unsub from Real Time Listener
-  watchEffect((onInvalidate) => {
+  watchEffect(onInvalidate => {
     onInvalidate(() => unsub());
   });
 

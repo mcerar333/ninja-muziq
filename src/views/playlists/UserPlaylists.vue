@@ -20,28 +20,30 @@
 </template>
 
 <script>
-const ListView = defineAsyncComponent(() => import('@/components/ListView.vue'))
+const ListView = defineAsyncComponent(() =>
+  import('@/components/ListView.vue')
+);
 
-import getCollection from '@/composables/getCollection'
-import getUser from '@/composables/getUser'
+import getCollection from '@/composables/getCollection';
+import getUser from '@/composables/getUser';
 
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent } from 'vue';
 
 export default {
   components: { ListView },
 
   setup() {
-    const user = getUser()
+    const user = getUser();
 
     const { error, documents: playlists } = getCollection('playlists', [
       'userId',
       '==',
       user.value.uid,
-    ])
+    ]);
 
-    return { error, playlists }
+    return { error, playlists };
   },
-}
+};
 </script>
 
 <style>

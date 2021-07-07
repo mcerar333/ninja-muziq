@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 const user = ref(auth.currentUser);
 
-auth.onAuthStateChanged((_user) => {
+auth.onAuthStateChanged(_user => {
   user.value = _user;
 });
 

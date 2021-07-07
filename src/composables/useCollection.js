@@ -1,29 +1,29 @@
-import { db } from '../firebase/config'
-import { ref } from 'vue'
+import { db } from '../firebase/config';
+import { ref } from 'vue';
 
-const useCollection = (collection) => {
-  const error = ref(null)
-  const pending = ref(false)
+const useCollection = collection => {
+  const error = ref(null);
+  const pending = ref(false);
 
-  const addDoc = async (doc) => {
-    error.value = null
-    pending.value = true
+  const addDoc = async doc => {
+    error.value = null;
+    pending.value = true;
 
     try {
-      const res = await db.collection(collection).add(doc)
+      const res = await db.collection(collection).add(doc);
 
-      if (!res.id) throw Error('Error writing to database...')
+      if (!res.id) throw Error('Error writing to database...');
 
-      pending.value = false
+      pending.value = false;
 
-      return res
+      return res;
     } catch (err) {
-      error.value = err.message
-      pending.value = false
+      error.value = err.message;
+      pending.value = false;
     }
-  }
+  };
 
-  return { pending, error, addDoc }
-}
+  return { pending, error, addDoc };
+};
 
-export default useCollection
+export default useCollection;

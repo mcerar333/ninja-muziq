@@ -29,32 +29,32 @@
 <script>
 const BaseSpinner = defineAsyncComponent(() =>
   import('@/components/BaseSpinner')
-)
+);
 
-import useLogin from '@/composables/useLogin'
+import useLogin from '@/composables/useLogin';
 
-import { ref, defineAsyncComponent } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, defineAsyncComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
   components: { BaseSpinner },
 
   setup() {
-    const email = ref('')
-    const password = ref('')
-    const router = useRouter()
+    const email = ref('');
+    const password = ref('');
+    const router = useRouter();
 
-    const { pending, error, login } = useLogin()
+    const { pending, error, login } = useLogin();
 
     const handleSubmit = async () => {
-      await login(email.value, password.value)
+      await login(email.value, password.value);
 
-      if (!error.value) router.replace({ name: 'UserPlaylists' })
-    }
+      if (!error.value) router.replace({ name: 'UserPlaylists' });
+    };
 
-    return { email, password, pending, error, handleSubmit }
+    return { email, password, pending, error, handleSubmit };
   },
-}
+};
 </script>
 
 <style>

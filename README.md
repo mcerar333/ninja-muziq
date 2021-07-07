@@ -1,14 +1,14 @@
 <p align="center">
   <a href="https://ninja-muziq.netlify.app" target="_blank">
-    <img src="https://i.ibb.co/1K98QmF/ninja.png" alt="Mapty">
+    <img src="https://i.ibb.co/1K98QmF/ninja.png" alt="Ninja Muziq Logo">
   </a>
 </p>
 
-<h2 align="center">Ninja Muziq | Share your music playlist...</h2>
+<h1 align="center">Ninja Muziq | Share your Music Playlists</h1>
 
 ### Description
 
-🎧 **Ninja Muziq** is a music playlists sharing app that lets you browse the most popular song playlists or add your own...
+🎧 **Ninja Muziq** is a music playlist sharing app that lets you browse the most popular song playlists or add your own. Sign up & start exploring... 🎵🎵🎵
 
 ### Tech
 
@@ -18,7 +18,7 @@
 - Custom Composition Functions / Composables
 - Vue Router
 
-🔥 **PaaS - Firebase as a Backend** using:
+🔥 **Firebase as a Backend** using:
 
 - Firebase Auth
 - Firebase Storage

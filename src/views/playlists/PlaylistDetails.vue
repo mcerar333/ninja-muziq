@@ -77,18 +77,18 @@
 </template>
 
 <script>
-const AddSong = defineAsyncComponent(() => import('@/components/AddSong'))
+const AddSong = defineAsyncComponent(() => import('@/components/AddSong'));
 const BaseSpinner = defineAsyncComponent(() =>
   import('@/components/BaseSpinner')
-)
+);
 
-import getDocument from '@/composables/getDocument'
-import useDocument from '@/composables/useDocument'
-import useStorage from '@/composables/useStorage'
-import getUser from '@/composables/getUser'
+import getDocument from '@/composables/getDocument';
+import useDocument from '@/composables/useDocument';
+import useStorage from '@/composables/useStorage';
+import getUser from '@/composables/getUser';
 
-import { ref, computed, defineAsyncComponent } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, defineAsyncComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
   props: ['id'],
@@ -96,40 +96,40 @@ export default {
   components: { BaseSpinner, AddSong },
 
   setup(props) {
-    const pending = ref(false)
-    const router = useRouter()
-    const user = getUser()
+    const pending = ref(false);
+    const router = useRouter();
+    const user = getUser();
 
-    const { storageError, deleteFile } = useStorage()
-    const { getError, document: playlist } = getDocument('playlists', props.id)
+    const { storageError, deleteFile } = useStorage();
+    const { getError, document: playlist } = getDocument('playlists', props.id);
     const { useError, deleteDoc, updateDoc } = useDocument(
       'playlists',
       props.id
-    )
+    );
 
     const isPlaylistOwner = computed(
       () =>
         user.value && playlist.value && user.value.uid === playlist.value.userId
-    )
+    );
 
     const handleDelete = async () => {
-      pending.value = true
+      pending.value = true;
 
-      await deleteFile(playlist.value.filePath)
-      await deleteDoc()
+      await deleteFile(playlist.value.filePath);
+      await deleteDoc();
 
-      pending.value = false
-      router.replace({ name: 'UserPlaylists' })
-    }
+      pending.value = false;
+      router.replace({ name: 'UserPlaylists' });
+    };
 
-    const handleDeleteSong = async (songId) => {
-      pending.value = true
+    const handleDeleteSong = async songId => {
+      pending.value = true;
 
-      const songs = playlist.value.songs.filter((song) => song.id !== songId)
-      await updateDoc({ songs })
+      const songs = playlist.value.songs.filter(song => song.id !== songId);
+      await updateDoc({ songs });
 
-      pending.value = false
-    }
+      pending.value = false;
+    };
 
     return {
       getError,
@@ -140,9 +140,9 @@ export default {
       isPlaylistOwner,
       handleDelete,
       handleDeleteSong,
-    }
+    };
   },
-}
+};
 </script>
 
 <style>

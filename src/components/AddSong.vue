@@ -46,11 +46,11 @@
 <script>
 const BaseSpinner = defineAsyncComponent(() =>
   import('@/components/BaseSpinner')
-)
+);
 
-import useDocument from '@/composables/useDocument'
+import useDocument from '@/composables/useDocument';
 
-import { ref, defineAsyncComponent } from 'vue'
+import { ref, defineAsyncComponent } from 'vue';
 
 export default {
   props: ['playlist'],
@@ -58,60 +58,60 @@ export default {
   components: { BaseSpinner },
 
   setup(props) {
-    const title = ref('')
-    const artist = ref('')
-    const video = ref('')
-    const formError = ref(null)
-    const formIsValid = ref(false)
-    const formIsVisible = ref(false)
+    const title = ref('');
+    const artist = ref('');
+    const video = ref('');
+    const formError = ref(null);
+    const formIsValid = ref(false);
+    const formIsVisible = ref(false);
 
     const { useError, pending, updateDoc } = useDocument(
       'playlists',
       props.playlist.id
-    )
+    );
 
-    const toggleForm = () => (formIsVisible.value = true)
+    const toggleForm = () => (formIsVisible.value = true);
 
-    const validateForm = (newSong) => {
-      const pattern = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-_]*)(&(amp;)?[\w?‌=]*)?/
+    const validateForm = newSong => {
+      const pattern = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-_]*)(&(amp;)?[\w?‌=]*)?/;
 
-      const result = pattern.test(newSong.video)
+      const result = pattern.test(newSong.video);
 
       if (newSong.title && newSong.artist && !newSong.video) {
-        formIsValid.value = true
-        formError.value = null
+        formIsValid.value = true;
+        formError.value = null;
       } else if (newSong.title && newSong.artist && result) {
-        formIsValid.value = true
-        formError.value = null
+        formIsValid.value = true;
+        formError.value = null;
       } else {
-        video.value = ''
-        formIsValid.value = false
-        formError.value = 'Please provide a valid Youtube link...'
+        video.value = '';
+        formIsValid.value = false;
+        formError.value = 'Please provide a valid Youtube link...';
       }
-    }
+    };
 
     const handleSubmit = async () => {
-      const now = new Date().toISOString()
-      const randomNr = Math.floor(Math.random() * 1000000).toString()
-      const uid = randomNr.concat(now)
+      const now = new Date().toISOString();
+      const randomNr = Math.floor(Math.random() * 1000000).toString();
+      const uid = randomNr.concat(now);
 
       const newSong = {
         id: uid,
         title: title.value,
         artist: artist.value,
         video: video.value,
-      }
+      };
 
-      validateForm(newSong)
+      validateForm(newSong);
 
       if (formIsValid.value) {
-        await updateDoc({ songs: [...props.playlist.songs, newSong] })
+        await updateDoc({ songs: [...props.playlist.songs, newSong] });
 
-        title.value = ''
-        artist.value = ''
-        video.value = ''
+        title.value = '';
+        artist.value = '';
+        video.value = '';
       }
-    }
+    };
 
     return {
       title,
@@ -123,9 +123,9 @@ export default {
       handleSubmit,
       pending,
       useError,
-    }
+    };
   },
-}
+};
 </script>
 
 <style>
